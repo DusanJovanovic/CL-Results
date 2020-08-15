@@ -1,5 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
-from app import db
+from extensions import db
 
 
 class Team(db.Model):
@@ -34,15 +34,10 @@ class Result(db.Model):
     def serialize(self):
         return {
             'result_id': self.result_id,
-            'stage': self.stage
+            'stage': self.stage,
             'home_team': self.home_team,
             'away_team': self.away_team,
             'home_score': self.home_score,
             'away_score': self.away_score,
             'match_time': self.match_time,
         }
-
-# Clean the database. We need "tabula rasa".
-db.drop_all()
-# Create models.
-db.create_all()
