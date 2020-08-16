@@ -25,5 +25,7 @@ class Result(db.Model):
             "away_team": self.away_team,
             "home_score": self.home_score,
             "away_score": self.away_score,
-            "match_time": datetime.datetime.fromtimestamp(self.match_time).strftime("%Y-%m-%dT%H:%M"),
+            "match_time": datetime.datetime.fromtimestamp(self.match_time).strftime(  # noqa E501
+                "%Y-%m-%dT%H:%M"
+            ),
         }

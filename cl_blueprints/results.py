@@ -52,7 +52,8 @@ def get_results():
     if until:
         res = res.filter(Result.match_time <= until)
     if team:
-        res = res.filter((Result.away_team == team) | (Result.home_team == team))
+        res = res.filter(
+            (Result.away_team == team) | (Result.home_team == team))
     if group:
         res = res.filter(Result.stage == group)
     for match in res.all():

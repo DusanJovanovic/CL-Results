@@ -1,7 +1,5 @@
 from flask import Blueprint, jsonify, request
 
-from extensions import db
-from models import Result
 from utils import get_ranking
 
 tables = Blueprint("tables", __name__)

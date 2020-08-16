@@ -55,13 +55,11 @@ LEFT OUTER JOIN
                          GROUP BY away_team) AS b
 ON              a.home_team = b.away_team)
 where stage is "{}"
-order by points DESC, gd DESC, gf DESC; """ # noqa E501
+order by points DESC, gd DESC, gf DESC; """  # noqa E501
 
 
 def get_match_uuid(match_dict):
-    name = (
-        f"{match_dict['home_team']}{match_dict['away_team']}{match_dict['match_time']}" # noqa E501
-    )
+    name = f"{match_dict['home_team']}{match_dict['away_team']}{match_dict['match_time']}"  # noqa E501
     return str(uuid.uuid5(uuid.NAMESPACE_X500, name))
 
 
@@ -84,9 +82,7 @@ def validate_input(data):
     if not data.get("match_time"):
         message += "No match_time provided.\n"
     try:
-        _ = datetime.datetime.strptime(
-            data.get("match_time"), "%Y-%m-%dT%H:%M"
-        )
+        _ = datetime.datetime.strptime(data.get("match_time"), "%Y-%m-%dT%H:%M")  # noqa E501
     except ValueError:
         message += "Bad format of match_time.\n"
     return message.strip()
