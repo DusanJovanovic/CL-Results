@@ -28,6 +28,27 @@ def post_results():
             )
             db.session.add(res)
     db.session.commit()
-    groups = [f"Group {x}" for x in "ABCDEFGH"]
+    groups = [f"Group{x}" for x in "ABCDEFGH"]
     tables = get_ranking(groups)
-    return jsonify(tables), 200
+    return jsonify(tables), 201
+
+
+@results.route('/results', methods=["GET"])
+def get_results():
+    return_list = []
+    since = request.args.get('since', default="", type=str)
+    until = request.args.get('until', default="", type=str)
+    team = request.args.get('team', default="", type=str)
+    group = request.args.get('group', default="", type=str)
+    res = Result.query.filter()
+    if since:
+        res = res.filter(Result.match_time>=since)
+    if until:
+        res = res.filter(Result.match_time<=until)
+    if team:
+        res = res.filter((Result.away_team==team) | (Result.home_team==team))
+    if group:
+        res = res.filter(Result.stage==group)
+    for match in res.all():
+        return_list.append(match.serialize())
+    return jsonify(return_list), 200
