@@ -69,7 +69,7 @@ def validate_input(data):
         message += "No away_team provided.\n"
     if not data.get("score") or re.fullmatch(r"[0-9]{1,3}:[0-9]{1,3}", data.get("score")) is None:
         message += "No score provided or score in bad format.\n"
-    if not data.get("stage") or re.fullmatch(r"Group [A-H]{1}", data.get("stage")) is None:
+    if not data.get("stage") or re.fullmatch(r"Group[A-H]{1}", data.get("stage")) is None:
         message += "No stage provided or stage in bad format.\n"
     if not data.get("match_time"):
         message += "No match_time provided.\n"
@@ -85,7 +85,6 @@ def get_ranking(groups):
         group_dict = {group: []}
         ranking = get_table(group)
         for rank, team in enumerate(ranking):
-            print(team[0])
             team_dict = {
                 "rank": rank+1,
                 "team": team[0],
@@ -99,7 +98,7 @@ def get_ranking(groups):
             }
             group_dict[group].append(team_dict)
         if ranking:
-            return_list.append({group:group_dict})
+            return_list.append(group_dict)
     return return_list
 
 
