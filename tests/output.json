@@ -1,0 +1,65 @@
+[
+    {
+        "GroupA": [
+            {
+                "defeats": 0,
+                "draws": 1,
+                "goal_difference": 0,
+                "goals_against": 2,
+                "goals_for": 2,
+                "points": 1,
+                "rank": 1,
+                "team": "Lazio",
+                "wins": 0
+            },
+            {
+                "defeats": 0,
+                "draws": 1,
+                "goal_difference": 0,
+                "goals_against": 2,
+                "goals_for": 2,
+                "points": 1,
+                "rank": 2,
+                "team": "Porto",
+                "wins": 0
+            }
+        ]
+    },
+    {
+        "GroupB": [
+            {
+                "defeats": 0,
+                "draws": 1,
+                "goal_difference": 4,
+                "goals_against": 5,
+                "goals_for": 9,
+                "points": 10,
+                "rank": 1,
+                "team": "Roma",
+                "wins": 3
+            },
+            {
+                "defeats": 2,
+                "draws": 1,
+                "goal_difference": -1,
+                "goals_against": 10,
+                "goals_for": 9,
+                "points": 4,
+                "rank": 2,
+                "team": "Arsenal",
+                "wins": 1
+            },
+            {
+                "defeats": 2,
+                "draws": 2,
+                "goal_difference": -3,
+                "goals_against": 9,
+                "goals_for": 6,
+                "points": 2,
+                "rank": 3,
+                "team": "Valencia",
+                "wins": 0
+            }
+        ]
+    }
+]

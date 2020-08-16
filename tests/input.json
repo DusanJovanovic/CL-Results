@@ -1,0 +1,51 @@
+[
+    {
+        "stage": "GroupA",
+        "score": "2:2",
+        "home_team": "Porto",
+        "away_team": "Lazio",
+        "match_time": "2020-12-17T20:45"
+    },
+    {
+        "stage": "GroupB",
+        "score": "2:4",
+        "home_team": "Arsenal",
+        "away_team": "Roma",
+        "match_time": "2020-12-17T20:45"
+    },
+    {
+        "stage": "GroupB",
+        "score": "2:1",
+        "home_team": "Roma",
+        "away_team": "Arsenal",
+        "match_time": "2020-12-16T20:45"
+    },
+    {
+        "stage": "GroupB",
+        "score": "2:1",
+        "home_team": "Roma",
+        "away_team": "Valencia",
+        "match_time": "2020-12-15T20:45"
+    },
+    {
+        "stage": "GroupB",
+        "score": "1:1",
+        "home_team": "Valencia",
+        "away_team": "Roma",
+        "match_time": "2020-12-14T20:45"
+    },
+    {
+        "stage": "GroupB",
+        "score": "1:1",
+        "home_team": "Valencia",
+        "away_team": "Arsenal",
+        "match_time": "2020-12-13T20:45"
+    },
+    {
+        "stage": "GroupB",
+        "score": "5:3",
+        "home_team": "Arsenal",
+        "away_team": "Valencia",
+        "match_time": "2020-12-12T20:45"
+    }
+]
