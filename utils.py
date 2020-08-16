@@ -1,8 +1,10 @@
-from extensions import db
-import uuid
-import re
 import datetime
+import re
+import uuid
+
 from sqlalchemy import text
+
+from extensions import db
 
 sql_command = """select distinct away_team as team_, stage, gf1 + ifnull(gf2, 0) as gf, ga1 + ifnull(ga2, 0)  as ga, w1 + ifnull(w2, 0) as w, d1 + ifnull(d2, 0) as d, l1 + ifnull(l2, 0) as l, gf1 + ifnull(gf2, 0) - ga1 - ifnull(ga2, 0) as gd,  (w1 + ifnull(w2, 0)) * 3 + d1 + ifnull(d2, 0) as points
 from (SELECT          *
@@ -57,9 +59,11 @@ order by points DESC, gd DESC, gf DESC; """
 
 
 def get_match_uuid(match_dict):
-    name = f"{match_dict['home_team']}{match_dict['away_team']}{match_dict['match_time']}"
+    name = (
+        f"{match_dict['home_team']}{match_dict['away_team']}{match_dict['match_time']}"
+    )
     return str(uuid.uuid5(uuid.NAMESPACE_X500, name))
-     
+
 
 def validate_input(data):
     message = ""
@@ -67,17 +71,26 @@ def validate_input(data):
         message += "No home_team provided.\n"
     if not data.get("away_team"):
         message += "No away_team provided.\n"
-    if not data.get("score") or re.fullmatch(r"[0-9]{1,3}:[0-9]{1,3}", data.get("score")) is None:
+    if (
+        not data.get("score")
+        or re.fullmatch(r"[0-9]{1,3}:[0-9]{1,3}", data.get("score")) is None
+    ):
         message += "No score provided or score in bad format.\n"
-    if not data.get("stage") or re.fullmatch(r"Group[A-H]{1}", data.get("stage")) is None:
+    if (
+        not data.get("stage")
+        or re.fullmatch(r"Group[A-H]{1}", data.get("stage")) is None
+    ):
         message += "No stage provided or stage in bad format.\n"
     if not data.get("match_time"):
         message += "No match_time provided.\n"
     try:
-        match_time = datetime.datetime.strptime(data.get("match_time"), "%Y-%m-%dT%H:%M")
+        match_time = datetime.datetime.strptime(
+            data.get("match_time"), "%Y-%m-%dT%H:%M"
+        )
     except ValueError:
         message += "Bad format of match_time.\n"
     return message.strip()
+
 
 def get_ranking(groups):
     return_list = []
@@ -86,7 +99,7 @@ def get_ranking(groups):
         ranking = get_table(group)
         for rank, team in enumerate(ranking):
             team_dict = {
-                "rank": rank+1,
+                "rank": rank + 1,
                 "team": team[0],
                 "goals_for": team[2],
                 "goals_against": team[3],
@@ -106,4 +119,3 @@ def get_table(cl_group):
     sql_text = text(sql_command.format(cl_group))
     result = db.engine.execute(sql_text)
     return result.fetchall()
-
