@@ -26,7 +26,7 @@ def post_results():
                 away_score=res["score"].split(":")[-1],
                 match_time=datetime.datetime.strptime(
                     res["match_time"], "%Y-%m-%dT%H:%M"
-                ),
+                ).timestamp(),
             )
             db.session.add(res)
     db.session.commit()
@@ -39,7 +39,11 @@ def post_results():
 def get_results():
     return_list = []
     since = request.args.get("since", default="", type=str)
+    if since:
+        since = datetime.datetime.strptime(since, "%Y-%m-%dT%H:%M").timestamp()
     until = request.args.get("until", default="", type=str)
+    if until:
+        until = datetime.datetime.strptime(until, "%Y-%m-%dT%H:%M").timestamp()
     team = request.args.get("team", default="", type=str)
     group = request.args.get("group", default="", type=str)
     res = Result.query.filter()
